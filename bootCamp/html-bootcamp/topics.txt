@@ -1,0 +1,105 @@
+Fundamentals of Web :-
+
+- Dividing it in three parts easy, intermediate and advanced
+
+
+How web works ( Intro )
+
+-role of html, css and js
+
+
+HTML, CSS and JS (easy)
+
+HTML
+
+- Elements and tags
+
+    -viod Elements
+        -img
+        -br
+        -a
+- HTML biolerplate
+- Text in HTML
+    h1
+    p
+    span
+    br
+    em
+    strong
+    code, pre
+
+- Lists
+    - Ordered Lists
+    - Unordered Lists
+- Links and Images
+    -a tag -> target attribute
+    img -> alt
+- HTML semantics
+    -section
+    -aside
+    -header
+    -footer
+    -nav
+    -main
+    -article
+    -img with alt
+
+
+CSS 
+
+- Intro ( Inspecting html and css )
+
+-Box model
+    Content
+    Padding 
+    Border
+    Margin
+
+- Block and Inline
+    - Block
+    - Inline
+    - Inline Block Elements
+
+- FlexBox
+    - what is display FlexBox
+    - justify Content
+    - Align items
+    - Axes
+    - Growing and shrinking
+    
+- Grid
+    - Intro to Grid
+    - why grid when we already have FlexBox
+
+- project
+- how to make it live
+
+
+
+JAVASCRIPT
+
+- What is js and it's features ( History and Intro )
+    - compiled vs interpreted
+    - synch vs asynch
+    - single thereaded
+    - dynamic, loosely typed ==> you can just tell here about ts what is it and why is it
+    
+- Variables and operators
+    - var, let and const
+    - mathematcial operators
+    - conditional operators
+    - equality operators == and ===
+    - 
+- Data type and conditionals
+- Developer tool and how to use it 
+- Functions basics
+- How to approach to errors ( Understanding very common types of errors and teaching students problem solving )
+- Small ( console based/ alert, prompt, confirm based ) project
+- Importance of Clean code in programming
+- Installing node js
+- Arrays it’s methods and loops 
+- DOM manipulation and events
+
+
+
+
