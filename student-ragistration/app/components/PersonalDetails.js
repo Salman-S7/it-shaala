@@ -36,7 +36,7 @@ const PersonalDetails = ({
 }) => {
   return (
     <form>
-      <fieldset className="my-10 mt-[14vh] no-scrollbar">
+      <fieldset className="my-10 no-scrollbar">
         <legend className="font-bold my-8">Personal Details</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
           <div className="w-full md:w-1/3">

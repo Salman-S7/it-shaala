@@ -7,7 +7,6 @@ import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
 import { Stepper, Step, Button } from "@material-tailwind/react";
 
-
 const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -45,23 +44,86 @@ const Form = () => {
   const [isAddressSame, setIsAddressSame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const [tab, setTAb] = useState(0);
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
   const [isFirstStep, setIsFirstStep] = React.useState(false);
 
+  const someFieldsAreEmpty = () => {
+    if (tab === 0) {
+      if (
+        !firstName ||
+        !middleName ||
+        !lastName ||
+        !gender ||
+        !dob ||
+        !aadharNumber ||
+        !panNumber ||
+        !mobileNumber ||
+        !email ||
+        !presentAddress ||
+        !permanentAddress ||
+        !fathersOccupation ||
+        !mothersOccupation ||
+        !fatherContact ||
+        !motherContact
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (tab === 1) {
+      if (
+        !degreeName ||
+        !degreeCollegeName ||
+        !degreeSpecialization ||
+        !degreeCGPA ||
+        !degreePassingYear ||
+        !hscCollegeName ||
+        !hscSpecialization ||
+        !hscCGPA ||
+        !hscPassingYear ||
+        !sscBoardName ||
+        !sscSchoolName ||
+        !sscMedium ||
+        !sscCGPA ||
+        !sscPassingYear
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+      } else if (tab === 2) {
+        if (!admissionDate || !courseAdmitted || !batchCode) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+      if (!passportPhoto) return true;
+      return false;
+      }
+  };
+
   const handleNext = () => {
-    setTAb(p => p+1)
+    switch (tab) {
+      case 0:
+        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        break;
+      case 1:
+        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        break;
+      case 2:
+        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        break;
+    }
+    setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
-  }
+  };
   const handlePrev = () => {
     setTAb((p) => p - 1);
-
     !isFirstStep && setActiveStep((cur) => cur - 1);
-  } 
- 
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -169,16 +231,16 @@ const Form = () => {
 
   return (
     <>
-      <div className="w-full py-4 px-8">
+      <div className="w-full pt-10 xl:px-44 px-4">
         <Stepper
           activeStep={activeStep}
           isLastStep={(value) => setIsLastStep(value)}
           isFirstStep={(value) => setIsFirstStep(value)}
         >
-          <Step onClick={() => setActiveStep(0)}>1</Step>
-          <Step onClick={() => setActiveStep(1)}>2</Step>
-          <Step onClick={() => setActiveStep(2)}>3</Step>
-          <Step onClick={() => setActiveStep(2)}>4</Step>
+          <Step>1</Step>
+          <Step>2</Step>
+          <Step>3</Step>
+          <Step>4</Step>
         </Stepper>
         <div className="mt-16 flex justify-between">
           <Button onClick={handlePrev} disabled={isFirstStep}>
