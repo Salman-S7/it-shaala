@@ -6,7 +6,7 @@ import Form from "./components/form";
 export default function Home() {
   
   return (
-    <main>
+    <main className="no-scrollbar">
       <Form />
     </main>
   );

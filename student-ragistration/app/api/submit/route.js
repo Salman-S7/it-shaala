@@ -68,10 +68,13 @@ export const POST = async (req) => {
             data.admissionDate,
             data.courseAdmitted,
             data.batchCode,
+            // data.passportPhoto,
           ],
         ],
       },
     });
+
+
 
     return NextResponse.json({ data: response.data }, { status: 201 });
   } catch (e) {
