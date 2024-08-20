@@ -5,7 +5,7 @@ import PersonalDetails from "./PersonalDetails";
 import EducationalDetails from "./EducationalDetails";
 import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
-import { Stepper, Step, Button } from "@material-tailwind/react";
+import { Stepper, Step, Button, Typography } from "@material-tailwind/react";
 
 const Form = () => {
   const [firstName, setFirstName] = useState("");
@@ -62,7 +62,6 @@ const Form = () => {
         !mobileNumber ||
         !email ||
         !presentAddress ||
-        !permanentAddress ||
         !fathersOccupation ||
         !mothersOccupation ||
         !fatherContact ||
@@ -237,10 +236,50 @@ const Form = () => {
           isLastStep={(value) => setIsLastStep(value)}
           isFirstStep={(value) => setIsFirstStep(value)}
         >
-          <Step>1</Step>
-          <Step>2</Step>
-          <Step>3</Step>
-          <Step>4</Step>
+          <Step>
+            1
+            <div className="absolute -bottom-[1.5rem] w-max text-center">
+              <Typography
+                variant="h6"
+                color={activeStep === 0 ? "blue-gray" : "gray"}
+              >
+                Personal Details
+              </Typography>
+            </div>
+          </Step>
+          <Step>
+            2
+            <div className="absolute -bottom-[1.5rem] w-max text-center">
+              <Typography
+                variant="h6"
+                color={activeStep === 0 ? "blue-gray" : "gray"}
+              >
+                Educational Details
+              </Typography>
+            </div>
+          </Step>
+          <Step>
+            3
+            <div className="absolute -bottom-[1.5rem] w-max text-center">
+              <Typography
+                variant="h6"
+                color={activeStep === 0 ? "blue-gray" : "gray"}
+              >
+                Other Details
+              </Typography>
+            </div>
+          </Step>
+          <Step>
+            4
+            <div className="absolute -bottom-[1.5rem] w-max text-center">
+              <Typography
+                variant="h6"
+                color={activeStep === 0 ? "blue-gray" : "gray"}
+              >
+                Upload Documents
+              </Typography>
+            </div>
+          </Step>
         </Stepper>
         <div className="mt-16 flex justify-between">
           <Button onClick={handlePrev} disabled={isFirstStep}>
