@@ -5,6 +5,8 @@ import PersonalDetails from "./PersonalDetails";
 import EducationalDetails from "./EducationalDetails";
 import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
+import { Stepper, Step, Button } from "@material-tailwind/react";
+
 
 const Form = () => {
   const [firstName, setFirstName] = useState("");
@@ -43,7 +45,24 @@ const Form = () => {
   const [isAddressSame, setIsAddressSame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [tab, setTab] = useState(0);
+
+  const [tab, setTAb] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [isLastStep, setIsLastStep] = React.useState(false);
+  const [isFirstStep, setIsFirstStep] = React.useState(false);
+
+  const handleNext = () => {
+    setTAb(p => p+1)
+    !isLastStep && setActiveStep((cur) => cur + 1);
+  }
+  const handlePrev = () => {
+    setTAb((p) => p - 1);
+
+    !isFirstStep && setActiveStep((cur) => cur - 1);
+  } 
+ 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isAddressSame) {
@@ -150,7 +169,28 @@ const Form = () => {
 
   return (
     <>
-      <ul className="w-full flex items-center md:justify-center md:mx-auto px-4 h-[10vh] overflow-auto no-scrollbar gap-4 font-bold fixed top-0 left-0">
+      <div className="w-full py-4 px-8">
+        <Stepper
+          activeStep={activeStep}
+          isLastStep={(value) => setIsLastStep(value)}
+          isFirstStep={(value) => setIsFirstStep(value)}
+        >
+          <Step onClick={() => setActiveStep(0)}>1</Step>
+          <Step onClick={() => setActiveStep(1)}>2</Step>
+          <Step onClick={() => setActiveStep(2)}>3</Step>
+          <Step onClick={() => setActiveStep(2)}>4</Step>
+        </Stepper>
+        <div className="mt-16 flex justify-between">
+          <Button onClick={handlePrev} disabled={isFirstStep}>
+            Prev
+          </Button>
+          <Button onClick={handleNext} disabled={isLastStep}>
+            Next
+          </Button>
+        </div>
+      </div>
+
+      {/* <ul className="w-full flex items-center md:justify-center md:mx-auto px-4 h-[10vh] overflow-auto no-scrollbar gap-4 font-bold fixed top-0 left-0">
         <li
           className={`cursor-pointer ${
             tab == 0
@@ -192,7 +232,7 @@ const Form = () => {
         >
           Upload Documents
         </li>
-      </ul>
+      </ul> */}
       <div
         className="max-w-6xl md:mx-auto mx-4  my-8 no-scrollbar"
         // onSubmit={handleSubmit}
