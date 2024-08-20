@@ -6,6 +6,7 @@ import EducationalDetails from "./EducationalDetails";
 import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
 import { Stepper, Step, Button, Typography } from "@material-tailwind/react";
+import { Alert, Snackbar } from "@mui/material";
 
 const Form = () => {
   const [firstName, setFirstName] = useState("");
@@ -45,9 +46,11 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [tab, setTAb] = useState(0);
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [isLastStep, setIsLastStep] = React.useState(false);
-  const [isFirstStep, setIsFirstStep] = React.useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+  const [isLastStep, setIsLastStep] = useState(false);
+  const [isFirstStep, setIsFirstStep] = useState(false);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+
 
   const someFieldsAreEmpty = () => {
     if (tab === 0) {
@@ -107,7 +110,7 @@ const Form = () => {
   const handleNext = () => {
     switch (tab) {
       case 0:
-        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
       case 1:
         if (someFieldsAreEmpty()) return alert("Fill all the fields");
@@ -227,9 +230,30 @@ const Form = () => {
     setBatchCode("Unicorn Batch");
     setIsAddressSame(false);
   };
+   const handleClose = (event, reason) => {
+     if (reason === "clickaway") {
+       return;
+     }
 
+     setOpenSnackBar(false);
+   };
   return (
     <>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{vertical:'top', horizontal:'right'}}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="warning"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Form Incomplete (Fill all the fields of given form!)
+        </Alert>
+      </Snackbar>
       <div className="w-full pt-10 xl:px-44 px-4">
         <Stepper
           activeStep={activeStep}
