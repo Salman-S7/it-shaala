@@ -1,5 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const DocumentsUpload = ({
   handleSubmit,
@@ -8,8 +13,57 @@ const DocumentsUpload = ({
   isAddressSame,
   isLoading,
 }) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
   return (
     <>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        scroll="paper"
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+      >
+        <DialogTitle id="scroll-dialog-title">Terms and conditions</DialogTitle>
+        <DialogContent dividers={scroll === "paper"}>
+          <DialogContentText
+            id="scroll-dialog-description"
+            ref={descriptionElementRef}
+            tabIndex={-1}
+          >
+            {[...new Array(50)]
+              .map(
+                () => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+              )
+              .join("\n")}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+          {/* <Button onClick={handleClose}>Subscribe</Button> */}
+        </DialogActions>
+      </Dialog>
       <fieldset className="my-10">
         <legend className="font-bold my-8">Documents</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
@@ -40,56 +94,6 @@ const DocumentsUpload = ({
               PNG, JPG (MAX. 2MB).
             </p>
           </div>
-
-          {/* <div className="w-full md:w-1/3">
-            <label
-              className="block mb-2 text-sm font-medium text-gray-900"
-              htmlFor="adhaar_softcopy_input"
-            >
-              Adhaar card Soft copy
-            </label>
-            <input
-              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
-              file:bg-gray-300 file:border-0
-                file:me-4
-                file:py-3 file:px-4"
-              aria-describedby="adhaar_softcopy_input_help"
-              id="adhaar_softcopy_input"
-              type="file"
-              required
-            />
-            <p
-              className="mt-1 text-sm text-gray-500"
-              id="adhaar_softcopy_input_help"
-            >
-              PNG, JPG (MAX. 2MB).
-            </p>
-          </div>
-
-          <div className="w-full md:w-1/3">
-            <label
-              className="block mb-2 text-sm font-medium text-gray-900"
-              htmlFor="pan_soft_copy_input"
-            >
-              Pan card Soft copy
-            </label>
-            <input
-              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
-              file:bg-gray-300 file:border-0
-                file:me-4
-                file:py-3 file:px-4"
-              aria-describedby="pan_soft_copy_input_help"
-              id="pan_soft_copy_input"
-              type="file"
-              required
-            />
-            <p
-              className="mt-1 text-sm text-gray-500"
-              id="pan_soft_copy_input_help"
-            >
-              PNG, JPG (MAX. 2MB).
-            </p>
-          </div> */}
         </div>
       </fieldset>
 
@@ -108,10 +112,13 @@ const DocumentsUpload = ({
           className="ms-2 text-sm font-medium text-gray-900"
         >
           I have read and agree to the{" "}
-          <Link className="text-blue-500 hover:text-blue-600" href="/">
-            terms and conditions
-          </Link>
         </label>
+        <span
+          className="ms-2 text-sm font-medium text-blue-400 hover:text-blue-700 cursor-pointer"
+          onClick={handleClickOpen()}
+        >
+          terms and conditions
+        </span>
       </div>
       <button
         onClick={handleSubmit}
