@@ -242,6 +242,7 @@ const Form = () => {
     setBatchCode("Unicorn Batch");
     setIsAddressSame(false);
     setTAb(0);
+    setActiveStep(0);
     setAdhaarCard(null);
     setPanCard(null);
     setPassportPhoto(null);
