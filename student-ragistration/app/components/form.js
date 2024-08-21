@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PersonalDetails from "./PersonalDetails";
 import EducationalDetails from "./EducationalDetails";
 import OtherDetails from "./OtherDetails";
@@ -42,15 +42,18 @@ const Form = () => {
   const [courseAdmitted, setCourseAdmitted] = useState("Java Full-Stack");
   const [batchCode, setBatchCode] = useState("Unicorn Batch");
   const [passportPhoto, setPassportPhoto] = useState(null);
+  const [adhaarCard, setAdhaarCard] = useState(null);
+  const [panCard, setPanCard] = useState(null);
   const [isAddressSame, setIsAddressSame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAgreedToTerms, setIsAgreedToTerms] = useState(false);
 
   const [tab, setTAb] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const [isLastStep, setIsLastStep] = useState(false);
   const [isFirstStep, setIsFirstStep] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(false);
-
+  const [openSuccessBar, setOpenSuccessBar] = useState(false);
 
   const someFieldsAreEmpty = () => {
     if (tab === 0) {
@@ -95,16 +98,16 @@ const Form = () => {
       } else {
         return false;
       }
-      } else if (tab === 2) {
-        if (!admissionDate || !courseAdmitted || !batchCode) {
-          return true;
-        } else {
-          return false;
-        }
+    } else if (tab === 2) {
+      if (!admissionDate || !courseAdmitted || !batchCode) {
+        return true;
       } else {
-      if (!passportPhoto) return true;
-      return false;
+        return false;
       }
+    } else if(tab === 3) {
+      if (!passportPhoto || !panCard || !adhaarCard) return true;
+      return false;
+    }
   };
 
   const handleNext = () => {
@@ -118,6 +121,9 @@ const Form = () => {
       case 2:
         if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
+      case 3:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;   
     }
     setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
@@ -127,11 +133,15 @@ const Form = () => {
     !isFirstStep && setActiveStep((cur) => cur - 1);
   };
 
+  useEffect(() => {
+    if (isAddressSame) {
+      setPermanentAddress((p) => "Same as present address");
+    }
+  }, [isAddressSame]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isAddressSame) {
-      setPermanentAddress((p) => presentAddress);
-    }
+
     setIsLoading(true);
 
     let formData = {
@@ -167,7 +177,11 @@ const Form = () => {
       admissionDate,
       courseAdmitted,
       batchCode,
-      passportPhoto,
+      docs: [
+        passportPhoto,
+        adhaarCard,
+        panCard
+      ]
     };
 
     try {
@@ -180,9 +194,8 @@ const Form = () => {
         body: JSON.stringify(formData),
       });
 
-      console.log(rawResponse);
       if (rawResponse.ok) {
-        alert("Form submitted succesfully");
+        setOpenSuccessBar(true);
         resetForm();
       } else {
         alert("Error occured");
@@ -215,7 +228,6 @@ const Form = () => {
     setDegreeSpecialization("");
     setDegreeCGPA("");
     setDegreePassingYear("");
-    setHscName("");
     setHscCollegeName("");
     setHscSpecialization("");
     setHscCGPA("");
@@ -229,14 +241,27 @@ const Form = () => {
     setCourseAdmitted("Java Full-Stack");
     setBatchCode("Unicorn Batch");
     setIsAddressSame(false);
-  };
-   const handleClose = (event, reason) => {
-     if (reason === "clickaway") {
-       return;
-     }
+    setTAb(0);
+    setAdhaarCard(null);
+    setPanCard(null);
+    setPassportPhoto(null);
+    setIsAgreedToTerms(false);
 
-     setOpenSnackBar(false);
-   };
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
+  const handleSuccessClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSuccessBar(false);
+  };
   return (
     <>
       <Snackbar
@@ -251,7 +276,22 @@ const Form = () => {
           variant="filled"
           sx={{ width: "100%" }}
         >
-          Form Incomplete (Fill all the fields to continue!)
+          Form Incomplete! ( Fill all the fields to continue. )
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openSuccessBar}
+        autoHideDuration={6000}
+        onClose={handleSuccessClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleSuccessClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Succesfully submitted form.
         </Alert>
       </Snackbar>
       <div className="w-full pt-10 xl:px-44 px-4">
@@ -458,9 +498,14 @@ const Form = () => {
             handleSubmit={handleSubmit}
             passportPhoto={passportPhoto}
             setPassportPhoto={setPassportPhoto}
-            isAddressSame={isAddressSame}
+            adhaarCard={adhaarCard}
+            setAdhaarCard={setAdhaarCard}
+            panCard={panCard}
+            setPanCard={setPanCard}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
+            isAgreedToTerms={isAgreedToTerms}
+            setIsAgreedToTerms={setIsAgreedToTerms}
           />
         ) : (
           <></>

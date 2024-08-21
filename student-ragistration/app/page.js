@@ -39,6 +39,7 @@ const MyComponet = () => {
       <div className="min-w-full flex items-center justify-end pr-10">
         <Image src={img} width={100} height="auto" alt="It Shaala Logo" />
       </div>
+      
 <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
   );

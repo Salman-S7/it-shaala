@@ -8,9 +8,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 const DocumentsUpload = ({
   handleSubmit,
-  passportPhoto,
   setPassportPhoto,
-  isAddressSame,
+  setAdhaarCard,
+  setPanCard,
   isLoading,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -24,6 +24,39 @@ const DocumentsUpload = ({
   };
 
   const descriptionElementRef = React.useRef(null);
+
+  function handlePassportChange(e, docType){
+    console.log(docType);
+    const fileReader = new FileReader();
+
+    const passPort = e.target.files[0];
+
+    fileReader.onloadend = () => {
+
+      let base64 = fileReader.result.split("base64,")[1];
+
+      let obj = {
+        base64,
+        type: passPort.type,
+        name: passPort.name,
+      };
+
+      switch (docType) {
+        case "passportPhoto":
+          setPassportPhoto(obj);
+          break;
+        case "adhaarCard":
+          setAdhaarCard(obj);
+          break;
+        case "panCard":
+          setPanCard(obj);
+          break;
+      }
+
+    };
+    fileReader.readAsDataURL(passPort);
+  };
+
   React.useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -34,7 +67,7 @@ const DocumentsUpload = ({
   }, [open]);
 
   return (
-    <>
+    <form>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -83,13 +116,61 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               id="passport_photo_input"
               type="file"
               required
-              onChange={(e) => {
-                setPassportPhoto(e.target.files[0]);
-              }}
+              onChange={(e) => handlePassportChange(e, "passportPhoto")}
             />
             <p
               className="mt-1 text-sm text-gray-500"
               id="passport_photo_input_help"
+            >
+              PNG, JPG (MAX. 2MB).
+            </p>
+          </div>
+          <div className="w-full md:w-1/3">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="aadhar_soft_copy_input"
+            >
+              Aadhar card soft copy
+            </label>
+            <input
+              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+    file:bg-gray-300 file:border-0
+    file:me-4
+    file:py-3 file:px-4"
+              aria-describedby="aadhar_soft_copy_input_help"
+              id="aadhar_soft_copy_input"
+              type="file"
+              required
+              onChange={(e) => handlePassportChange(e, "adhaarCard")}
+            />
+            <p
+              className="mt-1 text-sm text-gray-500"
+              id="aadhar_soft_copy_input_help"
+            >
+              PNG, JPG (MAX. 2MB).
+            </p>
+          </div>
+          <div className="w-full md:w-1/3">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="pan_soft_copy_input"
+            >
+              Pan card soft copy
+            </label>
+            <input
+              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+    file:bg-gray-300 file:border-0
+    file:me-4
+    file:py-3 file:px-4"
+              aria-describedby="pan_soft_copy_input_help"
+              id="pan_soft_copy_input"
+              type="file"
+              required
+              onChange={(e) => handlePassportChange(e, "panCard")}
+            />
+            <p
+              className="mt-1 text-sm text-gray-500"
+              id="pan_soft_copy_input_help"
             >
               PNG, JPG (MAX. 2MB).
             </p>
@@ -121,12 +202,13 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
         </span>
       </div>
       <button
+        type="submit"
         onClick={handleSubmit}
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         {isLoading ? "Loading ..." : "Submit"}
       </button>
-    </>
+    </form>
   );
 };
 
