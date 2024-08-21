@@ -113,10 +113,10 @@ const Form = () => {
         if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
       case 1:
-        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
       case 2:
-        if (someFieldsAreEmpty()) return alert("Fill all the fields");
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
     }
     setTAb((p) => p + 1);
@@ -243,7 +243,7 @@ const Form = () => {
         open={openSnackBar}
         autoHideDuration={6000}
         onClose={handleClose}
-        anchorOrigin={{vertical:'top', horizontal:'right'}}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={handleClose}
@@ -251,7 +251,7 @@ const Form = () => {
           variant="filled"
           sx={{ width: "100%" }}
         >
-          Form Incomplete (Fill all the fields of given form!)
+          Form Incomplete (Fill all the fields to continue!)
         </Alert>
       </Snackbar>
       <div className="w-full pt-10 xl:px-44 px-4">
@@ -266,6 +266,7 @@ const Form = () => {
               <Typography
                 variant="h6"
                 color={activeStep === 0 ? "blue-gray" : "gray"}
+                className="hidden md:block"
               >
                 Personal Details
               </Typography>
@@ -277,6 +278,7 @@ const Form = () => {
               <Typography
                 variant="h6"
                 color={activeStep === 0 ? "blue-gray" : "gray"}
+                className="hidden md:block"
               >
                 Educational Details
               </Typography>
@@ -288,6 +290,7 @@ const Form = () => {
               <Typography
                 variant="h6"
                 color={activeStep === 0 ? "blue-gray" : "gray"}
+                className="hidden md:block"
               >
                 Other Details
               </Typography>
@@ -299,8 +302,9 @@ const Form = () => {
               <Typography
                 variant="h6"
                 color={activeStep === 0 ? "blue-gray" : "gray"}
+                className="hidden md:block"
               >
-                Upload Documents
+                Document Upload
               </Typography>
             </div>
           </Step>
