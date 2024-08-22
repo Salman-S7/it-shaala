@@ -106,7 +106,6 @@ const Form = () => {
       }
     } else if(tab === 3) {
       if (!passportPhoto || !panCard || !adhaarCard || !isAgreedToTerms) {
-        console.log("these are the values");
         return true;
       } else {
       return false;        
@@ -127,7 +126,6 @@ const Form = () => {
         if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;
       case 3:
-        console.log("this is step 3");
         if (someFieldsAreEmpty()) return setOpenSnackBar(true);
         break;   
     }

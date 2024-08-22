@@ -20,8 +20,6 @@ export const POST = async (req) => {
 
     const r = await response.text();
 
-    console.log(r);
-
     if (r === "Data saved Succesfully: ") {
       return NextResponse.json({ data: data.passportPhoto }, { status: 201 });
     } else {

@@ -34,7 +34,7 @@ const PersonalDetails = ({
   isAddressSame,
   setIsAddressSame,
 }) => {
-  console.log(isAddressSame);
+  
   return (
     <form>
       <fieldset className="my-10 no-scrollbar">
