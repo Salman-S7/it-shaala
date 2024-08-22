@@ -12,6 +12,8 @@ const DocumentsUpload = ({
   setAdhaarCard,
   setPanCard,
   isLoading,
+  isAgreedToTerms,
+  setIsAgreedToTerms,
 }) => {
   const [open, setOpen] = React.useState(false);
   const [isFileAllowed, setIsFileAllowed] = React.useState(false);
@@ -36,16 +38,15 @@ const DocumentsUpload = ({
     if (!allowedTypes.includes(file.type)) {
       alert("Only JPEG, JPG, and PNG files are allowed.");
       e.target.value = "";
-      return
+      return;
     }
 
     const maxSizeInKB = 150;
     if (file.size / 1024 > maxSizeInKB) {
       alert("The size of the images should be less than 150KB");
       e.target.value = "";
-      return
+      return;
     }
-
 
     const fileReader = new FileReader();
 
@@ -71,7 +72,7 @@ const DocumentsUpload = ({
       }
     };
     fileReader.readAsDataURL(file);
-  };
+  }
 
   React.useEffect(() => {
     if (open) {
@@ -113,7 +114,10 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           {/* <Button onClick={handleClose}>Subscribe</Button> */}
         </DialogActions>
       </Dialog>
-      <p className="italic text-lg">* All the documetns should be in png/jpg/JPEG format and less than 150KB in size.</p>
+      <p className="italic text-lg">
+        * All the documetns should be in png/jpg/JPEG format and less than 150KB
+        in size.
+      </p>
       <fieldset className="my-10">
         <legend className="font-bold my-8">Documents</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
@@ -133,7 +137,6 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               id="passport_photo_input"
               type="file"
               required
-
               onChange={(e) => handlePassportChange(e, "passportPhoto")}
             />
             <p
@@ -201,7 +204,8 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           <input
             id="terms-conditions"
             type="checkbox"
-            value=""
+            checked={isAgreedToTerms}
+            onChange={(e)=> setIsAgreedToTerms(e.target.checked)}
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
             required
           />

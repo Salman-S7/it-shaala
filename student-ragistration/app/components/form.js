@@ -41,9 +41,9 @@ const Form = () => {
   const [admissionDate, setAdmissionDate] = useState("");
   const [courseAdmitted, setCourseAdmitted] = useState("Java Full-Stack");
   const [batchCode, setBatchCode] = useState("Unicorn Batch");
-  const [passportPhoto, setPassportPhoto] = useState(null);
-  const [adhaarCard, setAdhaarCard] = useState(null);
-  const [panCard, setPanCard] = useState(null);
+  const [passportPhoto, setPassportPhoto] = useState();
+  const [adhaarCard, setAdhaarCard] = useState();
+  const [panCard, setPanCard] = useState();
   const [isAddressSame, setIsAddressSame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAgreedToTerms, setIsAgreedToTerms] = useState(false);
@@ -105,26 +105,33 @@ const Form = () => {
         return false;
       }
     } else if(tab === 3) {
-      if (!passportPhoto || !panCard || !adhaarCard) return true;
-      return false;
+      if (!passportPhoto || !panCard || !adhaarCard || !isAgreedToTerms) {
+        console.log("these are the values");
+        return true;
+      } else {
+      return false;        
+      }
     }
   };
 
   const handleNext = () => {
-    // switch (tab) {
-    //   case 0:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 1:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 2:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 3:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;   
-    // }
+
+    switch (tab) {
+      case 0:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 1:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 2:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 3:
+        console.log("this is step 3");
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;   
+    }
+
     setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
   };
@@ -140,6 +147,9 @@ const Form = () => {
   }, [isAddressSame]);
 
   const handleSubmit = async (e) => {
+    if (tab === 3) {
+      if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+    }
     e.preventDefault();
 
     setIsLoading(true);
