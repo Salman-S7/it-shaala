@@ -34,6 +34,7 @@ const DocumentsUpload = ({
     fileReader.onloadend = () => {
 
       let base64 = fileReader.result.split("base64,")[1];
+      
 
       let obj = {
         base64,
