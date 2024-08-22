@@ -14,6 +14,7 @@ const DocumentsUpload = ({
   isLoading,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const [isFileAllowed, setIsFileAllowed] = React.useState(false);
 
   const handleClickOpen = () => () => {
     setOpen(true);
@@ -25,21 +26,36 @@ const DocumentsUpload = ({
 
   const descriptionElementRef = React.useRef(null);
 
-  function handlePassportChange(e, docType){
-    console.log(docType);
+  function handlePassportChange(e, docType) {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Only JPEG, JPG, and PNG files are allowed.");
+      e.target.value = "";
+      return
+    }
+
+    const maxSizeInKB = 150;
+    if (file.size / 1024 > maxSizeInKB) {
+      alert("The size of the images should be less than 150KB");
+      e.target.value = "";
+      return
+    }
+
+
     const fileReader = new FileReader();
 
-    const passPort = e.target.files[0];
-
     fileReader.onloadend = () => {
-
       let base64 = fileReader.result.split("base64,")[1];
-      
 
       let obj = {
         base64,
-        type: passPort.type,
-        name: passPort.name,
+        type: file.type,
+        name: file.name,
       };
 
       switch (docType) {
@@ -53,9 +69,8 @@ const DocumentsUpload = ({
           setPanCard(obj);
           break;
       }
-
     };
-    fileReader.readAsDataURL(passPort);
+    fileReader.readAsDataURL(file);
   };
 
   React.useEffect(() => {
@@ -98,6 +113,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           {/* <Button onClick={handleClose}>Subscribe</Button> */}
         </DialogActions>
       </Dialog>
+      <p className="italic text-lg">* All the documetns should be in png/jpg/JPEG format and less than 150KB in size.</p>
       <fieldset className="my-10">
         <legend className="font-bold my-8">Documents</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
@@ -117,6 +133,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               id="passport_photo_input"
               type="file"
               required
+
               onChange={(e) => handlePassportChange(e, "passportPhoto")}
             />
             <p
