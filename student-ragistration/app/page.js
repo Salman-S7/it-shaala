@@ -2,7 +2,6 @@
 import ReactToPrint from "react-to-print";
 import React, { useRef } from "react";
 import img from "../public/logo-02.png";
-import img1 from "../public/logo-03.png";
 
 // import { useState } from "react";
 import Form from "./components/form";

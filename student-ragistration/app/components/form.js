@@ -44,6 +44,9 @@ const Form = () => {
   const [passportPhoto, setPassportPhoto] = useState();
   const [adhaarCard, setAdhaarCard] = useState();
   const [panCard, setPanCard] = useState();
+  const [degreeMarksheet, setDegreeMarksheet] = useState();
+  const [hscMarksheet, setHscMarksheet] = useState();
+  const [sscMarksheet, setSscMarksheet] = useState();
   const [isAddressSame, setIsAddressSame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAgreedToTerms, setIsAgreedToTerms] = useState(false);
@@ -104,31 +107,38 @@ const Form = () => {
       } else {
         return false;
       }
-    } else if(tab === 3) {
-      if (!passportPhoto || !panCard || !adhaarCard || !isAgreedToTerms) {
+    } else if (tab === 3) {
+      if (
+        !passportPhoto ||
+        !panCard ||
+        !adhaarCard ||
+        !isAgreedToTerms ||
+        !degreeMarksheet ||
+        !sscMarksheet ||
+        !hscMarksheet
+      ) {
         return true;
       } else {
-      return false;        
+        return false;
       }
     }
   };
 
   const handleNext = () => {
-
-    switch (tab) {
-      case 0:
-        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-        break;
-      case 1:
-        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-        break;
-      case 2:
-        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-        break;
-      case 3:
-        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-        break;   
-    }
+    // switch (tab) {
+    //   case 0:
+    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+    //     break;
+    //   case 1:
+    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+    //     break;
+    //   case 2:
+    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+    //     break;
+    //   case 3:
+    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+    //     break;
+    // }
 
     setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
@@ -185,13 +195,8 @@ const Form = () => {
       admissionDate,
       courseAdmitted,
       batchCode,
-      docs: [
-        passportPhoto,
-        adhaarCard,
-        panCard
-      ]
+      docs: [passportPhoto, adhaarCard, panCard, degreeMarksheet, hscMarksheet, sscMarksheet],
     };
-    
 
     try {
       const rawResponse = await fetch("/api/submit", {
@@ -256,7 +261,6 @@ const Form = () => {
     setPanCard(null);
     setPassportPhoto(null);
     setIsAgreedToTerms(false);
-
   };
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -369,53 +373,7 @@ const Form = () => {
         </div>
       </div>
 
-      {/* <ul className="w-full flex items-center md:justify-center md:mx-auto px-4 h-[10vh] overflow-auto no-scrollbar gap-4 font-bold fixed top-0 left-0">
-        <li
-          className={`cursor-pointer ${
-            tab == 0
-              ? "bg-blue-500 text-white"
-              : "bg-slate-400 hover:bg-slate-500 text-white"
-          } px-8 py-4 rounded-lg`}
-          onClick={() => setTab(0)}
-        >
-          Personal Details
-        </li>
-        <li
-          className={`cursor-pointer ${
-            tab == 1
-              ? "bg-blue-500 text-white"
-              : "bg-slate-400 hover:bg-slate-500 text-white"
-          } px-8 py-4 rounded-lg`}
-          onClick={() => setTab(1)}
-        >
-          Educational Details
-        </li>
-        <li
-          className={`cursor-pointer ${
-            tab == 2
-              ? "bg-blue-500 text-white"
-              : "bg-slate-400 hover:bg-slate-500 text-white"
-          } px-8 py-4 rounded-lg`}
-          onClick={() => setTab(2)}
-        >
-          {" "}
-          Other Details
-        </li>
-        <li
-          className={`cursor-pointer ${
-            tab == 3
-              ? "bg-blue-500 text-white"
-              : "bg-slate-400 hover:bg-slate-500 text-white"
-          } px-8 py-4 rounded-lg`}
-          onClick={() => setTab(3)}
-        >
-          Upload Documents
-        </li>
-      </ul> */}
-      <div
-        className="max-w-6xl md:mx-auto mx-4  my-8 no-scrollbar"
-        // onSubmit={handleSubmit}
-      >
+      <div className="max-w-6xl md:mx-auto mx-4  my-8 no-scrollbar">
         {tab === 0 ? (
           <PersonalDetails
             firstName={firstName}
@@ -512,6 +470,12 @@ const Form = () => {
             setAdhaarCard={setAdhaarCard}
             panCard={panCard}
             setPanCard={setPanCard}
+            degreeMarksheet={degreeMarksheet}
+            setDegreeMarksheet={setDegreeMarksheet}
+            hscMarksheet={hscMarksheet}
+            setHscMarksheet={setHscMarksheet}
+            sscMarksheet={sscMarksheet}
+            setSscMarksheet={setSscMarksheet}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
             isAgreedToTerms={isAgreedToTerms}

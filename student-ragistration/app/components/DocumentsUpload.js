@@ -14,6 +14,9 @@ const DocumentsUpload = ({
   isLoading,
   isAgreedToTerms,
   setIsAgreedToTerms,
+  setDegreeMarksheet,
+  setHscMarksheet,
+  setSscMarksheet,
 }) => {
   const [open, setOpen] = React.useState(false);
   const [isFileAllowed, setIsFileAllowed] = React.useState(false);
@@ -68,6 +71,15 @@ const DocumentsUpload = ({
           break;
         case "panCard":
           setPanCard(obj);
+          break;
+        case "degreeMarksheet":
+          setDegreeMarksheet(obj);
+          break;
+        case "hscMarksheet":
+          setHscMarksheet(obj);
+          break;
+        case "sscMarksheet":
+          setSscMarksheet(obj);
           break;
       }
     };
@@ -139,12 +151,12 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               required
               onChange={(e) => handlePassportChange(e, "passportPhoto")}
             />
-            <p
+            {/* <p
               className="mt-1 text-sm text-gray-500"
               id="passport_photo_input_help"
             >
               PNG, JPG (MAX. 2MB).
-            </p>
+            </p> */}
           </div>
           <div className="w-full md:w-1/3">
             <label
@@ -164,12 +176,12 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               required
               onChange={(e) => handlePassportChange(e, "adhaarCard")}
             />
-            <p
+            {/* <p
               className="mt-1 text-sm text-gray-500"
               id="aadhar_soft_copy_input_help"
             >
               PNG, JPG (MAX. 2MB).
-            </p>
+            </p> */}
           </div>
           <div className="w-full md:w-1/3">
             <label
@@ -189,12 +201,84 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
               required
               onChange={(e) => handlePassportChange(e, "panCard")}
             />
-            <p
+            {/* <p
               className="mt-1 text-sm text-gray-500"
               id="pan_soft_copy_input_help"
             >
               PNG, JPG (MAX. 2MB).
-            </p>
+            </p> */}
+          </div>
+        </div>
+
+        <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
+          <div className="w-full md:w-1/3">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="degree_marksheet"
+            >
+              Degree marksheet
+            </label>
+            <input
+              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+    file:bg-gray-300 file:border-0
+    file:me-4
+    file:py-3 file:px-4"
+              aria-describedby="degree_marksheet_help"
+              id="degree_marksheet"
+              type="file"
+              required
+              onChange={(e) => handlePassportChange(e, "degreeMarksheet")}
+            />
+            {/* <p
+              className="mt-1 text-sm text-gray-500"
+              id="degree_marksheet_help"
+            >
+              PNG, JPG (MAX. 2MB).
+            </p> */}
+          </div>
+          <div className="w-full md:w-1/3">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="hsc_marksheet"
+            >
+              HSC/Diploma marksheet
+            </label>
+            <input
+              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+    file:bg-gray-300 file:border-0
+    file:me-4
+    file:py-3 file:px-4"
+              aria-describedby="hsc_marksheet_help"
+              id="hsc_marksheet"
+              type="file"
+              required
+              onChange={(e) => handlePassportChange(e, "hscMarksheet")}
+            />
+            {/* <p className="mt-1 text-sm text-gray-500" id="hsc_marksheet_help">
+              PNG, JPG (MAX. 2MB).
+            </p> */}
+          </div>
+          <div className="w-full md:w-1/3">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900"
+              htmlFor="ssc_marksheet"
+            >
+              SSC marksheet
+            </label>
+            <input
+              className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+    file:bg-gray-300 file:border-0
+    file:me-4
+    file:py-3 file:px-4"
+              aria-describedby="ssc_marksheet_help"
+              id="ssc_marksheet"
+              type="file"
+              required
+              onChange={(e) => handlePassportChange(e, "sscMarksheet")}
+            />
+            {/* <p className="mt-1 text-sm text-gray-500" id="ssc_marksheet_help">
+              PNG, JPG, (MAX. 2MB).
+            </p> */}
           </div>
         </div>
       </fieldset>
@@ -205,7 +289,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
             id="terms-conditions"
             type="checkbox"
             checked={isAgreedToTerms}
-            onChange={(e)=> setIsAgreedToTerms(e.target.checked)}
+            onChange={(e) => setIsAgreedToTerms(e.target.checked)}
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
             required
           />
