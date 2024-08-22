@@ -1,7 +1,7 @@
-import { google } from "googleapis";
 import { NextResponse } from "next/server";
-
+export const maxDuration = 40;
 export const POST = async (req) => {
+
   const url = process.env.GOOGLE_SCRIPT_URL;
   if (req.method !== "POST") {
     return NextResponse.json(
@@ -11,8 +11,8 @@ export const POST = async (req) => {
   }
 
   try {
-    const data = await req.json();
 
+    const data = await req.json();
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
