@@ -37,6 +37,13 @@ const PersonalDetails = ({
   
   return (
     <form>
+      <p className="sm:text-lg">
+        <span className="text-red-400">*</span> Please fill out all details with
+        utmost <strong> care and attention.</strong> The information you provide
+        will be directly used for your
+        <strong> placement process.</strong>
+      </p>
+
       <fieldset className="my-10 no-scrollbar">
         <legend className="font-bold my-8">Personal Details</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">

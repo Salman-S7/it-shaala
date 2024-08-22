@@ -125,20 +125,20 @@ const Form = () => {
   };
 
   const handleNext = () => {
-    // switch (tab) {
-    //   case 0:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 1:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 2:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 3:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    // }
+    switch (tab) {
+      case 0:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 1:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 2:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 3:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+    }
 
     setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
@@ -372,7 +372,6 @@ const Form = () => {
           </Button>
         </div>
       </div>
-
       <div className="max-w-6xl md:mx-auto mx-4  my-8 no-scrollbar">
         {tab === 0 ? (
           <PersonalDetails

@@ -127,8 +127,9 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
         </DialogActions>
       </Dialog>
       <p className="italic text-lg">
-        * All the documetns should be in png/jpg/JPEG format and less than 150KB
-        in size.
+        <span className="text-red-400">*</span> All the documetns should be in
+        <strong> png/jpg/JPEG format</strong> and{" "}
+        <strong>less than 150KB</strong> in size.
       </p>
       <fieldset className="my-10">
         <legend className="font-bold my-8">Documents</legend>
