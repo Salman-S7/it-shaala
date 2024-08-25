@@ -7,7 +7,6 @@ import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
 import { Stepper, Step, Button, Typography } from "@material-tailwind/react";
 import { Alert, Snackbar } from "@mui/material";
-
 const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -195,7 +194,14 @@ const Form = () => {
       admissionDate,
       courseAdmitted,
       batchCode,
-      docs: [passportPhoto, adhaarCard, panCard, degreeMarksheet, hscMarksheet, sscMarksheet],
+      docs: [
+        passportPhoto,
+        adhaarCard,
+        panCard,
+        degreeMarksheet,
+        hscMarksheet,
+        sscMarksheet,
+      ],
     };
 
     try {
@@ -308,13 +314,18 @@ const Form = () => {
           Succesfully submitted form.
         </Alert>
       </Snackbar>
-      <div className="w-full pt-10 xl:px-44 px-4">
+      <div className="w-full pt-5 xl:px-44 px-4 fixed top-0 left-0 bg-white">
         <Stepper
           activeStep={activeStep}
           isLastStep={(value) => setIsLastStep(value)}
           isFirstStep={(value) => setIsFirstStep(value)}
+          activeLineClassName="bg-[#164891]"
+          lineClassName="bg-gray-200"
         >
-          <Step>
+          <Step
+            activeClassName="bg-[#164891]"
+            completedClassName="bg-[#164891]"
+          >
             1
             <div className="absolute -bottom-[1.5rem] w-max text-center">
               <Typography
@@ -326,7 +337,10 @@ const Form = () => {
               </Typography>
             </div>
           </Step>
-          <Step>
+          <Step
+            activeClassName="bg-[#164891]"
+            completedClassName="bg-[#164891]"
+          >
             2
             <div className="absolute -bottom-[1.5rem] w-max text-center">
               <Typography
@@ -338,7 +352,10 @@ const Form = () => {
               </Typography>
             </div>
           </Step>
-          <Step>
+          <Step
+            activeClassName="bg-[#164891]"
+            completedClassName="bg-[#164891]"
+          >
             3
             <div className="absolute -bottom-[1.5rem] w-max text-center">
               <Typography
@@ -350,7 +367,10 @@ const Form = () => {
               </Typography>
             </div>
           </Step>
-          <Step>
+          <Step
+            activeClassName="bg-[#164891]"
+            completedClassName="bg-[#164891]"
+          >
             4
             <div className="absolute -bottom-[1.5rem] w-max text-center">
               <Typography
@@ -364,15 +384,24 @@ const Form = () => {
           </Step>
         </Stepper>
         <div className="mt-16 flex justify-between">
-          <Button onClick={handlePrev} disabled={isFirstStep}>
+          <Button
+            onClick={handlePrev}
+            disabled={isFirstStep}
+            className="bg-[#164891]"
+          >
             Prev
           </Button>
-          <Button onClick={handleNext} disabled={isLastStep}>
+          <Button
+            onClick={handleNext}
+            disabled={isLastStep}
+            className="bg-[#164891]"
+          >
             Next
           </Button>
         </div>
       </div>
-      <div className="max-w-6xl md:mx-auto mx-4  my-8 no-scrollbar">
+
+      <div className="max-w-6xl md:mx-auto mx-4  my-8 mt-52 no-scrollbar">
         {tab === 0 ? (
           <PersonalDetails
             firstName={firstName}

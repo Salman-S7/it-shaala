@@ -34,17 +34,19 @@ const PersonalDetails = ({
   isAddressSame,
   setIsAddressSame,
 }) => {
-  
   return (
     <form>
-      <p className="sm:text-lg">
-        <span className="text-red-400">*</span> Please fill out all details with
+      <p className="sm:text-lg text-center">
+        {/* <span className="text-red-400">*</span> Please fill out all details with
         utmost <strong> care and attention.</strong> The information you provide
         will be directly used for your
-        <strong> placement process.</strong>
+        <strong> placement process.</strong> */}
+        <span className="font-bold text-[#164891] text-xl sm:text-3xl">
+          Registration-cum-Placement Form
+        </span>
       </p>
 
-      <fieldset className="my-10 no-scrollbar">
+      <fieldset className="my-10 no-scrollbar border-2 border-gray-600 rounded-2xl md:rounded-3xl p-[16px]">
         <legend className="font-bold my-8">Personal Details</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
           <div className="w-full md:w-1/3">

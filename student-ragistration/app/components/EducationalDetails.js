@@ -32,7 +32,7 @@ const EducationalDetails = ({
 }) => {
   return (
     <form>
-      <fieldset className="my-10  no-scrollbar">
+      <fieldset className="my-10  no-scrollbar border-2 border-gray-600 rounded-2xl md:rounded-3xl p-[16px]">
         <legend className="font-bold my-8">Educational Details</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
           <div className="w-full md:w-1/3">
@@ -296,4 +296,3 @@ const EducationalDetails = ({
 };
 
 export default EducationalDetails;
-

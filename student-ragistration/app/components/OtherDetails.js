@@ -10,7 +10,7 @@ const OtherDetails = ({
 }) => {
   return (
     <form>
-      <fieldset className="my-10">
+      <fieldset className="my-10  border-2 border-gray-600 rounded-2xl md:rounded-3xl p-[16px]">
         <legend className="font-bold my-8">Others</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
           <div className="w-full md:w-1/3">
@@ -40,8 +40,8 @@ const OtherDetails = ({
 
             <select
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                          onChange={(e) => setCourseAdmitted(e.target.value)}
-                          value={courseAdmitted}
+              onChange={(e) => setCourseAdmitted(e.target.value)}
+              value={courseAdmitted}
             >
               <option value="Java Full-Stack">Java Full-Stack</option>
               <option value="Python Full-Stack">Python Full-Stack</option>
@@ -66,8 +66,8 @@ const OtherDetails = ({
 
             <select
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                          onChange={(e) => setBatchCode(e.target.value)}
-                          value={batchCode}
+              onChange={(e) => setBatchCode(e.target.value)}
+              value={batchCode}
             >
               <option value="Unicorn Batch">Unicorn Batch</option>
               <option value="Thunder Batch">Thunder Batch</option>

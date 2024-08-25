@@ -96,7 +96,7 @@ const DocumentsUpload = ({
   }, [open]);
 
   return (
-    <form>
+    <form className=" border-2 border-gray-600 rounded-2xl md:rounded-3xl p-[16px]">
       <Dialog
         open={open}
         onClose={handleClose}
@@ -131,7 +131,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
         <strong> png/jpg/JPEG format</strong> and{" "}
         <strong>less than 150KB</strong> in size.
       </p>
-      <fieldset className="my-10">
+      <fieldset className="my-10 ">
         <legend className="font-bold my-8">Documents</legend>
         <div className="mb-5 flex-col flex md:flex-row w-full gap-2">
           <div className="w-full md:w-1/3">
@@ -300,13 +300,13 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           className="ms-2 text-sm font-medium text-gray-900"
         >
           I have read and agree to the{" "}
+          <span
+            className="ms-2 text-sm font-medium text-blue-400 hover:text-blue-700 cursor-pointer"
+            onClick={handleClickOpen()}
+          >
+            terms and conditions
+          </span>
         </label>
-        <span
-          className="ms-2 text-sm font-medium text-blue-400 hover:text-blue-700 cursor-pointer"
-          onClick={handleClickOpen()}
-        >
-          terms and conditions
-        </span>
       </div>
       <button
         type="submit"
