@@ -3,13 +3,57 @@
 @tailwind utilities;
 
 @layer utilities {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-     /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-    }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@media print {
+  .print-component {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .print-component h1 {
+    font-size: 18pt;
+    margin-bottom: 20pt;
+  }
+
+  .print-component h2 {
+    font-size: 16pt;
+    margin-top: 15pt;
+    margin-bottom: 10pt;
+  }
+
+  .print-component p {
+    margin-bottom: 5pt;
+  }
+
+  .print-component hr {
+    border: 0.2pt solid #000;
+  }
+
+  .print-component .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  .print-component .page-break-before {
+    page-break-before: always;
+  }
+
+  @page {
+    margin: 3cm 1cm;
+  }
+
+  /* Hide non-printable elements */
+  button {
+    display: none;
+  }
+}

@@ -7,6 +7,7 @@ import OtherDetails from "./OtherDetails";
 import DocumentsUpload from "./DocumentsUpload";
 import { Stepper, Step, Button, Typography } from "@material-tailwind/react";
 import { Alert, Snackbar } from "@mui/material";
+import { useRouter } from "next/navigation";
 const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -56,6 +57,8 @@ const Form = () => {
   const [isFirstStep, setIsFirstStep] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [openSuccessBar, setOpenSuccessBar] = useState(false);
+
+  const router = useRouter();
 
   const someFieldsAreEmpty = () => {
     if (tab === 0) {
@@ -215,8 +218,10 @@ const Form = () => {
       });
 
       if (rawResponse.ok) {
-        setOpenSuccessBar(true);
         resetForm();
+        localStorage.setItem("data", JSON.stringify(formData));
+        router.push("/print-pdf");
+        setOpenSuccessBar(true);
       } else {
         alert("Error occured");
       }
@@ -279,9 +284,9 @@ const Form = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenSuccessBar(false);
   };
+
   return (
     <>
       <Snackbar
@@ -402,6 +407,13 @@ const Form = () => {
       </div>
 
       <div className="max-w-6xl md:mx-auto mx-4  my-8 mt-52 no-scrollbar">
+        <button
+          onClick={() =>
+            router.push("/print-pdf", { query: { name: "salman" } })
+          }
+        >
+          navigate
+        </button>
         {tab === 0 ? (
           <PersonalDetails
             firstName={firstName}
