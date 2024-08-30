@@ -42,7 +42,7 @@ const PersonalDetails = ({
         will be directly used for your
         <strong> placement process.</strong> */}
         <span className="font-bold text-[#164891] text-xl sm:text-3xl">
-          Registration-cum-Placement Form
+          IT Shaala Registration-cum-Placement Form
         </span>
       </p>
 

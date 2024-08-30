@@ -1,26 +1,24 @@
 "use client";
 
-import Image from "next/image";
-import img from "../../public/logo-02.png";
 import { useState, useEffect } from "react";
 
 const MyComponet = () => {
   const [data, setData] = useState();
   useEffect(() => {
-    const mydata = window.localStorage.getItem("data");
-    setData(mydata);
+    const myData = JSON.parse(window.localStorage.getItem("data"));
+    setData(myData);
   }, []);
 
   return (
     <div className="print-component px-12 py-8">
-      <div className="min-w-full flex items-center justify-between pr-10">
-        <Image src={img} width={140} height="auto" alt="It Shaala Logo" />
+      <div className="min-w-full flex items-center justify-center pr-10">
+        {/* <Image src={img} width={140} height="auto" alt="It Shaala Logo" /> */}
         <div className="text-center">
           <p className="font-black text-2xl text-blue-900">IT Shaala</p>
           <p>IT Training & Placement Institute</p>
           <p>Registration-cum-Placement Form</p>
         </div>
-        <Image src={img} width={140} height="auto" alt="It Shaala Logo" />
+        {/* <Image src={img} width={140} height="auto" alt="It Shaala Logo" /> */}
       </div>
       <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
       <div className="mt-12 mx-auto max-w-4xl">
