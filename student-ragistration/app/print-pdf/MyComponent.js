@@ -2,9 +2,14 @@
 
 import Image from "next/image";
 import img from "../../public/logo-02.png";
+import { useState, useEffect } from "react";
 
 const MyComponet = () => {
-  const data = JSON.parse(localStorage.getItem("data"));
+  const [data, setData] = useState();
+  useEffect(() => {
+    const mydata = window.localStorage.getItem("data");
+    setData(mydata);
+  }, []);
 
   return (
     <div className="print-component px-12 py-8">
