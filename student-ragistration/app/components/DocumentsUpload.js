@@ -111,14 +111,49 @@ const DocumentsUpload = ({
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
-              .join("\n")}
+            <ol className="list-decimal list-inside">
+              <p className="my-8 font-bold">IT Shaala Rules & Policies </p>
+              <li className="my-4">
+                {/* <span className="font-semibold"> */}
+                Non-Refundable Fees: -{/* </span> */}
+                All fees paid to IT Shaala are strictly non-refundable &
+                non-tranferrable under any circumstances.
+              </li>
+              <li className="my-4">
+                Placement Requirements: - A minimum of 90% attendance is
+                mandatory to qualify for placement assistance. - Interview calls
+                will commence after the completion of half of the syllabus.
+              </li>
+
+              <li className="my-4">
+                Office Premises Conduct: - Any damage or harm caused to office
+                premises or property will result in legal action being taken
+                against the responsible individual(s).
+              </li>
+
+              <li className="my-4">
+                Placement Assistance Disclaimer: - IT Shaala offers placement
+                assistance only and does not guarantee job placement.
+              </li>
+
+              <li className="my-4">
+                Fee Payment and Class Access: - Fees must be paid within the
+                stipulated time as per the payment schedule. - Failure to pay
+                fees on time will result in the suspension(hold/break) of class
+                access until payment is made. - Fees 1st installment should be
+                clear before the batch starts - If your installment gets delayed
+                after the due date , batch & other services will be stopped
+                until installment Is cleared.
+              </li>
+              <li className="my-4">
+                Batch update Policy: - If student want to change batch he will
+                be allowed only once. - On LMS If student change his/her batch
+                offline then he will be not allowed to both batch recordings.
+                These rules ensure clarity and maintain a professional
+                environment at IT Shaala. Schemes if any, are of Company (IT
+                Shaala) Alt rights reserved by Company for cancellation/delay.
+              </li>
+            </ol>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

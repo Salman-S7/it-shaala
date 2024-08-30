@@ -374,7 +374,10 @@ const MyComponet = () => {
               <div className="w-32 border-b border-black mt-10"></div>
             </div>
             <div>
-              <p className="font-medium">Signature of Student:</p>
+              <p className="font-medium">
+                Signature of Student:
+                {/* <Image src="" alt="Signature" width={200} height="auto"></Image>  */}
+              </p>
               <div className="w-64 border-b border-black mt-10"></div>
             </div>
           </div>
