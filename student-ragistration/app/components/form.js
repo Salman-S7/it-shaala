@@ -407,13 +407,6 @@ const Form = () => {
       </div>
 
       <div className="max-w-6xl md:mx-auto mx-4  my-8 mt-52 no-scrollbar">
-        <button
-          onClick={() =>
-            router.push("/print-pdf", { query: { name: "salman" } })
-          }
-        >
-          navigate
-        </button>
         {tab === 0 ? (
           <PersonalDetails
             firstName={firstName}
