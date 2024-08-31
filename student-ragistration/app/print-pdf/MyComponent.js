@@ -1,11 +1,17 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const MyComponet = () => {
   const [data, setData] = useState();
+  const router = useRouter();
+
   useEffect(() => {
     const myData = JSON.parse(window.localStorage.getItem("data"));
+    if (!myData) {
+      router.push("/");
+    }
     setData(myData);
   }, []);
 
