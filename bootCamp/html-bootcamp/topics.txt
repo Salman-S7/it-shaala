@@ -64,16 +64,13 @@ CSS
     - what is display FlexBox
     - justify Content
     - Align items
-    - Axes
+    - Axes   ==> main axis and cross axis
     - Growing and shrinking
     
-- Grid
-    - Intro to Grid
-    - why grid when we already have FlexBox
-
+9
 - project
 - how to make it live
-
+- projects to take inspiration from https://lun-dev.github.io/Landing-Page,  https://htmlpreview.github.io/?https://github.com/dipps18/odin-landing-page/blob/main/index.html
 
 
 JAVASCRIPT
