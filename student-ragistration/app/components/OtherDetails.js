@@ -45,7 +45,11 @@ const OtherDetails = ({
             >
               <option value="Java Full-Stack">Java Full-Stack</option>
               <option value="Python Full-Stack">Python Full-Stack</option>
+              <option value="Data Analatics">Data Analatics</option>
               <option value="MERN Stack">MERN Stack</option>
+              <option value="Backend Java">Backend Java</option>
+              <option value="Backend Python">Backend Python</option>
+              <option value="Frontend React">Frontend React</option>
             </select>
 
             {/* <input
@@ -61,7 +65,7 @@ const OtherDetails = ({
               htmlFor="ssc-medium"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
-              Batch name
+              Batch code
             </label>
 
             <select
@@ -69,10 +73,33 @@ const OtherDetails = ({
               onChange={(e) => setBatchCode(e.target.value)}
               value={batchCode}
             >
-              <option value="Unicorn Batch">Unicorn Batch</option>
-              <option value="Thunder Batch">Thunder Batch</option>
-              <option value="Titan Batch">Titan Batch</option>
+              <optgroup label="JAVA">
+                <option value="ISJ011">ISJ011</option>
+                <option value="ISJ012">ISJ012</option>
+                <option value="ISJ013">ISJ013</option>
+              </optgroup>
+              <optgroup label="PYTHON">
+                <option value="ISP003">ISP003</option>
+                <option value="ISP004">ISP004</option>
+                <option value="ISP005">ISP005</option>
+              </optgroup>
+              <optgroup label="DATA SCIENCE">
+                <option value="ISDS003">ISDS003</option>
+                <option value="ISDS004">ISDS004</option>
+                <option value="ISDS005">ISDS005</option>
+              </optgroup>
+              <optgroup label="DATA ANALYTICS">
+                <option value="ISDA001">ISDA001</option>
+                <option value="ISDA002">ISDA002</option>
+                <option value="ISDA003">ISDA003</option>
+              </optgroup>
+              <optgroup label="MERN">
+                <option value="ISM001">ISM001</option>
+                <option value="ISM002">ISM002</option>
+                <option value="ISM003">ISM003</option>
+              </optgroup>
             </select>
+
             {/* <input
             type="number"
             id="ssc-medium"

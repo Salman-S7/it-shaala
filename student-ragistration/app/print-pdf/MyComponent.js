@@ -15,6 +15,8 @@ const MyComponet = () => {
     setData(myData);
   }, []);
 
+  console.log(data);
+
   return (
     <div className="print-component px-12 py-8">
       <div className="min-w-full flex items-center justify-center pr-10">
@@ -382,7 +384,13 @@ const MyComponet = () => {
             <div>
               <p className="font-medium">
                 Signature of Student:
-                {/* <Image src="" alt="Signature" width={200} height="auto"></Image>  */}
+                {/* <img
+                  src={`data:image/png;base64, ${data?.docs[0].base64}`}
+                  alt="Signature"
+                  width={200}
+                  height={100}
+                  className="h-12 w-[200px]"
+                ></img> */}
               </p>
               <div className="w-64 border-b border-black mt-10"></div>
             </div>
