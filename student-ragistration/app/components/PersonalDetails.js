@@ -202,13 +202,13 @@ const PersonalDetails = ({
               htmlFor="adhaar-number"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
-              Adhaar Card
+              Aadhaar Card
             </label>
             <input
               type="text"
               id="adhaar-number"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="Adhar card number"
+              placeholder="Aadhaar card number"
               required
               value={aadharNumber}
               onChange={(e) => setAadharNumber(e.target.value)}
@@ -320,7 +320,7 @@ const PersonalDetails = ({
               type="text"
               id="mothers-occupatoin"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="eg. Hosemaker"
+              placeholder="eg. Housemaker"
               required
               value={mothersOccupation}
               onChange={(e) => setMothersOccupation(e.target.value)}
