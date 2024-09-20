@@ -127,20 +127,20 @@ const Form = () => {
   };
 
   const handleNext = () => {
-    // switch (tab) {
-    //   case 0:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 1:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 2:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    //   case 3:
-    //     if (someFieldsAreEmpty()) return setOpenSnackBar(true);
-    //     break;
-    // }
+    switch (tab) {
+      case 0:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 1:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 2:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+      case 3:
+        if (someFieldsAreEmpty()) return setOpenSnackBar(true);
+        break;
+    }
 
     setTAb((p) => p + 1);
     !isLastStep && setActiveStep((cur) => cur + 1);
