@@ -40,7 +40,7 @@ const Form = () => {
   const [sscPassingYear, setSscPassingYear] = useState("");
   const [admissionDate, setAdmissionDate] = useState("");
   const [courseAdmitted, setCourseAdmitted] = useState("Java Full-Stack");
-  const [batchCode, setBatchCode] = useState("Unicorn Batch");
+  const [batchCode, setBatchCode] = useState("ISJ011");
   const [passportPhoto, setPassportPhoto] = useState();
   const [adhaarCard, setAdhaarCard] = useState();
   const [panCard, setPanCard] = useState();
@@ -264,7 +264,7 @@ const Form = () => {
     setSscPassingYear("");
     setAdmissionDate("");
     setCourseAdmitted("Java Full-Stack");
-    setBatchCode("Unicorn Batch");
+    setBatchCode("ISJ011");
     setIsAddressSame(false);
     setTAb(0);
     setActiveStep(0);
